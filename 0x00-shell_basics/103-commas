@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -pva | tr '\n' ', ' | sed 's/,/, /g' | sed 's/,$/\n/'
+ls -pva | tr '\n' ',' | sed 's/,/, /g' | sed 's/, $/\n/'
