@@ -1,2 +1,2 @@
 #!/bin/bash
-chmod ugo=rx hello
+sudo chmod 555 hello
