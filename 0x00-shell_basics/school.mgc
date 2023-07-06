@@ -1,2 +1,2 @@
 #!/bin/bash
-file grep -P '^SCHOOL'
+grep -P '^SCHOOL' school.mgc | file -
