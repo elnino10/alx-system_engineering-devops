@@ -1,2 +1,4 @@
 #!/bin/bash
 echo "$NUM.00"
+#!/bin/bash
+printf %.2f\\n $NUM
