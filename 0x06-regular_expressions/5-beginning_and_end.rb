@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# script for 2-repetition_token_1
+# script for 5-beginning_and_end
 
 if ARGV.empty?
     puts ""
