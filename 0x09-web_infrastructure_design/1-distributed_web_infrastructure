@@ -1,0 +1,28 @@
+https://imgur.com/8Sosh3C
+
+1. About the Additional Resources in this infrastructure:
+a. HAproxy (load-balancer): why add a load balancer?
+For managment of the workload on the servers, to prevent overloading and balancing the overall workload on the servers, which in turn promotes availability and accessibility to the server's content.
+
+c. Two Servers: why two servers? The essence of having two servers is to enable redundancy (which is handled by a slave server). The setup would eventually result in having: two master server and then one slave server.
+
+--- The two master server operates in an active-active relationship, which implies that both of them have the same configuration and are operating at the same time.
+
+-- For the slave server, it operates as a redundant server which is triggered only when there is an anomaly occurrence in either of the master servers. The relationship between the master servers and slave server an active-passive relationship.
+
+2. What distribution algorithm your load balancer is configured with and how it works: In this design, the distribution algorithm used by the load balancer is the ROUND ROBIN ALGORITHM.
+How does the ROUND ROBIN ALGORITHM WORKS: The ROUND ROBBIN ALGORITHM handles distribution of HTTP request in a cyclic manner. This implies that it assigns request starting from the first server to the last server and then back to the first server in a cylic loop.
+
+3. Is your load-balancer enabling an Active-Active or Active-Passive setup, explain the difference between both: Our load balancer is operating in an active-active setup meaning that the requests distribution are processed concurrently with the goal to achieve balance between the servers hence to prevent overload.
+While on the other hand, active-passive setup is one that involves at least two node operation also, but there is only one active server and the other acts as a fail-over server, that is, its operation is only triggered when there is failures in the primary server.
+
+4. How does a database Primary-Replica (Master-Slave) cluster works: a Primary-Replica (Master-Slave) database cluster is designed to provide fault tolerance, high availability, and scalability in database systems by distributing read operations, ensuring data redundancy, and enabling failover mechanisms in the event of a primary node failure.
+
+5. What is the difference between the Primary node and the Replica node in regard to the application: the primary node in a database cluster is responsible for processing write operations, serving as the authoritative source of data. On the other hand, replica nodes are copies of the primary and primarily handle read operations, distributing the load to improve overall performance.
+
+-- You must be able to explain what the issues are with this infrastructure:
+a. Where are SPOF: Single Point of Failure (SPOF): Load Balancer (HAproxy): If the load balancer becomes a single point of failure, it could lead to a complete disruption of the system. If the load balancer fails, incoming traffic won't be distributed, affecting the overall availability of the website.
+
+b. Security issues (no firewall, no HTTPS): No Firewall: The absence of a firewall poses a significant security risk. Firewalls act as a barrier between the servers and the external network, controlling incoming and outgoing traffic based on predefined security rules. Without a firewall, the servers are more vulnerable to unauthorized access and potential security threats.
+
+c. No monitoring: Lack of monitoring tools means there is no systematic way to track the health, performance, or potential issues within the infrastructure. Monitoring is crucial for identifying bottlenecks, server failures, or abnormal behavior. Without it, diagnosing and resolving issues promptly becomes challenging, leading to potential downtime and degraded user experience.
