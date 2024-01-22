@@ -10,6 +10,6 @@ file_line { 'Disables password-based authentication':
 file_line { 'Configures private key authentication':
     ensure => 'present',
       path => '/etc/ssh/ssh_config',
-      line => '	IdentityFile ~/.ssh/holberton',
+      line => '	IdentityFile ~/.ssh/school',
 }
 
