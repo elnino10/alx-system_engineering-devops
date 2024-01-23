@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# Configure your Nginx server so that /redirect_me is redirecting to another page
+
+# requirements:
+# 	The redirection must be a "301 Moved Permanently"
+
+#	Using 1-install_nginx_web_server, write 3-redirection so that it configures
+#	a brand new Ubuntu machine to the needed requirements
+
+# update packet list
+sudo apt update
+
+# install nginx
+sudo apt install -y nginx
+
+# configure server to listen on port 80
+echo "server {
+	listen       80;
+	server_name  josephegboka.tech;
+
+	location  /  {
+                root     /var/www/html;
+                index    index.html;
+        }
+
+	location  /redirect_me  {
+		return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+	}
+}"  |  sudo tee /etc/nginx/sites-available/default
+
+# create a html file with "Hello World!"
+echo "Hello World!" | sudo tee /var/www/html/index.html
+
+# restart Nginx server
+sudo service nginx restart
+
