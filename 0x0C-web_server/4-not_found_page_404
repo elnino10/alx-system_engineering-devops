@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+# script that configures a new Ubuntu machine respecting certain requirements
+# (script will be run on the server itself)
+
+# Nginx server should be configured so that /redirect_me is redirecting to another page
+
+# Nginx server to have a custom 404 page that contains the string "Ceci n'est pas une page
+
+# requirements:
+#       Install nginx on your web-01 server
+
+#       Nginx should be listening on port 80
+
+#       When querying Nginx at its root / with a GET request (requesting a page)
+#       using curl, it must return a page that contains the string "Hello World!"
+
+# 	The redirection must be a "301 Moved Permanently"
+
+#	server to have a custom 404 page
+#	page must contain the string "Ceci n'est pas une page"
+
+# update packet list
+sudo apt update
+
+# install nginx
+sudo apt install -y nginx
+
+# configure server to listen on port 80
+echo "server {
+	listen       80;
+	server_name  josephegboka.tech;
+
+	location  /  {
+                root     /var/www/html;
+                index    index.html;
+        }
+
+	location  /redirect_me  {
+		return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+	}
+
+	error_page 404 /404.html;
+	location = /404.html  {
+		root /var/www/html;
+		internal;
+		return 404 'Ceci n\'est pas une page\n';
+	}
+}"  |  sudo tee /etc/nginx/sites-available/default
+
+# create a html file with "Hello World!"
+echo "Hello World!" | sudo tee /var/www/html/index.html
+
+# 404 not found html file
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
+
+# restart Nginx server
+sudo service nginx restart
+
