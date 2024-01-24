@@ -26,8 +26,8 @@ Several resources are provided to aid in understanding and completing the projec
 - [Logs files on Linux](https://www.cyberciti.biz/faq/ubuntu-linux-gnome-system-log-viewer/)
 
 ### References
-[RFC 7231 (HTTP/1.1)](https://datatracker.ietf.org/doc/html/rfc7231)
-[RFC 7540 (HTTP/2)](https://datatracker.ietf.org/doc/html/rfc7540)
+- [RFC 7231 (HTTP/1.1)](https://datatracker.ietf.org/doc/html/rfc7231)
+- [RFC 7540 (HTTP/2)](https://datatracker.ietf.org/doc/html/rfc7540)
 
 ### man or help
 - scp
