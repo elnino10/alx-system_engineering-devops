@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Script to install and configure HAProxy 2.8-stable (LTS)
+
+# Update package information
+sudo apt-get -y update
+
+# enable a dedicated PPA
+sudo apt-get install --no-install-recommends software-properties-common
+sudo add-apt-repository ppa:vbernat/haproxy-2.8
+
+# Install HAProxy version 2.8-stable (LTS)
+sudo apt-get install haproxy=2.8.\*
+
+# Append configuration to HAProxy configuration file
+sudo bash -c "cat >> /etc/haproxy/haproxy.cfg << EOF
+
+# Define backend configuration
+backend web-backend
+	balance roundrobin
+	server 471056-web-01 3.90.83.133:80 check
+	server 471056-web-02 54.146.60.136:80 check
+
+# Define frontend configuration
+frontend web-frontend
+	bind *:80
+	mode http
+	default_backend web-backend
+EOF
+"
+
+# Restart HAProxy service to apply changes
+sudo service haproxy restart
