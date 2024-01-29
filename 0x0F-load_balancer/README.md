@@ -1,4 +1,4 @@
-## Load balancer README
+# Load balancer README
 
 ## Overview
 In this project, we delve into two fundamental concepts that play crucial roles in the world of web development: Load Balancing and Web Stack Debugging. Understanding these concepts is essential for building scalable and reliable web applications.
