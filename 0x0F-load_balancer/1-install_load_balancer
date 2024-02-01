@@ -4,12 +4,11 @@
 # Update package information
 sudo apt-get -y update
 
-# enable a dedicated PPA
-sudo apt-get -y install --no-install-recommends software-properties-common
-sudo add-apt-repository -y ppa:vbernat/haproxy-2.8
+# upgrade haproxy version
+sudo apt -y upgrade
 
 # Install HAProxy version 2.8-stable (LTS)
-sudo apt-get -y install haproxy=2.8.\*
+sudo apt-get -y install haproxy
 
 # Append configuration to HAProxy configuration file
 sudo bash -c "cat >> /etc/haproxy/haproxy.cfg << EOF
@@ -30,3 +29,7 @@ EOF
 
 # Restart HAProxy service to apply changes
 sudo service haproxy restart
+
+# Make an HTTP request to the load balancer and display response headers
+curl -I http://54.237.40.46:80
+
