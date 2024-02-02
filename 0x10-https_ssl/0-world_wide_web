@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# script will display information about subdomains
+
+print_domain_info ()
+{
+	printf "The subdomain %s is a " "$1"
+	RECORD_TYPE=`dig "$1"."$2" | grep -A1 "ANSWER SECTION:" | grep "$2" | awk -F' ' '{print $4}'`
+	printf "%s record and points to " "$RECORD_TYPE"
+	dig "$1"."$2" | grep -A1 "ANSWER SECTION:" | grep "$2" | awk -F' ' '{print $5}'
+	return 0
+}
+
+if (( $# == 2 )); then
+	print_domain_info "$2" "$1"
+else
+	subdomains=("www" "lb-01" "web-01" "web-02")
+	for subdomain in "${subdomains[@]}"
+	do
+		print_domain_info "$subdomain" "$1"
+	done
+fi
+		
