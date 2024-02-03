@@ -20,6 +20,8 @@ global
 defaults
         log     global
         mode    http
+        option forwardfor
+        option http-server-close
         option  httplog
         option  dontlognull
         timeout connect 5000
@@ -32,21 +34,22 @@ defaults
         errorfile 502 /etc/haproxy/errors/502.http
         errorfile 503 /etc/haproxy/errors/503.http
 
+        stats enable
+        stats uri /stats
+        stats realm Haproxy\ Statistics
+        stats auth elnino:elnino10
+
+maxconn 2048
+
+# Define frontend configuration https
+frontend www-https
+        bind *:80
+        bind *:443 ssl crt /etc/haproxy/certs/josephegboka.tech.pem
+        redirect scheme https code 301 if !{ ssl_fc }
+        default_backend web-backend
 
 # Define backend configuration
 backend web-backend
         balance roundrobin
         server 471056-web-01 3.90.83.133:80 check
         server 471056-web-02 54.146.60.136:80 check
-
-# Define frontend configuration
-frontend web-frontend
-        bind *:443 ssl crt /etc/letsencrypt/live/josephegboka.tech/fullchain.pem
-        mode http
-        option forwardfor
-        option http-server-close
-
-        acl is_subdomain hdr(host) -i www.josephegboka.tech
-
-        use_backend web-backend if is_subdomain
-
