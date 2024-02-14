@@ -3,8 +3,8 @@
 
 user=$1
 
-if ! getent passwd "$user" > /dev/null 2>&1; then
-	adduser "$user"
-fi
+# if ! getent passwd "$user" > /dev/null 2>&1; then
+#	adduser "$user"
+# fi
 runuser -l "$user" -c whoami
 
