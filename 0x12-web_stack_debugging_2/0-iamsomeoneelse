@@ -2,9 +2,5 @@
 # script accepts one argument and runs the whoami command under the user passed as an argument
 
 user=$1
-
-# if ! getent passwd "$user" > /dev/null 2>&1; then
-#	adduser "$user"
-# fi
-runuser -l "$user" -c whoami
+sudo -u "$user" whoami
 
