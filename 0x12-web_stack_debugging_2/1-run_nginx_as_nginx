@@ -14,4 +14,3 @@ pkill apache2
 
 # switch user to nginx and restart nginx
 su nginx -s /bin/bash -c 'service nginx restart'
-
