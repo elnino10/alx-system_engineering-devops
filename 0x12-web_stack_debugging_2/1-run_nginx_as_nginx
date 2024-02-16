@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# script fixes container so that Nginx is running as the "nginx" user
+
+chmod 644 /etc/nginx/nginx.conf
+
+# change user to nginx
+sed -Ei 's/\s*#user .*/user nginx; /' /etc/nginx/nginx.conf
+
+# ensure server is listening on all active IPs on port 8080
+sed -Ei 's/(listen (\[::\]:)?80) /\180 /' /etc/nginx/sites-enabled/default
+
+# kill the apache2 running
+pkill apache2
+
+# switch user to nginx and restart nginx
+su nginx -s /bin/bash -c 'service nginx restart'
+
