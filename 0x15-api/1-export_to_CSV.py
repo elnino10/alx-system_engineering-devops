@@ -4,9 +4,9 @@ script that uses the https://jsonplaceholder.typicode.com/ REST API,
 for a given employee ID, returns information about his/her TODO list
 progress and extend script to export data in the CSV format
 """
-import sys
-
 import requests
+
+import sys
 
 # if __name__ == '__main__':
 #     user = sys.argv[1]
