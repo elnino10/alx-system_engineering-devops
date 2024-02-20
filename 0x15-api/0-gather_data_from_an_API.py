@@ -20,8 +20,8 @@ if __name__ == "__main__":
             completed_tasks = len(
                 [task for task in user_tasks if task["completed"] is True])
             print(
-                f"Employee {user['name']} is done with "
-    f"({completed_tasks}/{tasks_number}):"
+                f"Employee {user['name']} is done with tasks"
+                f"({completed_tasks}/{tasks_number}):"
                 )
             for task in user_tasks:
                 if task["completed"] is True:
