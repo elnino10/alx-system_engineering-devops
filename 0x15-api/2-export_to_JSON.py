@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 """ Python to get data from an API and convert to Json"""
-import requests
 import json
+import requests
 import sys
-
 
 # if __name__ == '__main__':
 #     USER_ID = sys.argv[1]
@@ -37,14 +36,13 @@ if __name__ == "__main__":
             user_tasks = requests.get(
                 f"{REST_API}users/{user_id}/todos", timeout=5).json()
 
-            my_dict = {"USER_ID": []}
+            my_dict = {user_id: []}
             for task in user_tasks:
-                my_dict["USER_ID"].append({
+                my_dict[user_id].append({
                     "task": task["title"],
                     "completed": task["completed"],
                     "username": user["username"],
                 })
-
             json_file = f"{user_id}.json"
             with open(json_file, 'w', encoding="utf-8") as j_file:
                 json.dump(my_dict, j_file)
