@@ -1,18 +1,18 @@
 #!/usr/bin/python3
 """ script to get data from an API and convert and store in json format"""
 import json
-import requests
 import sys
 
+import requests
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
         REST_API = "https://jsonplaceholder.typicode.com/"
         if isinstance(sys.argv[1].isnumeric(), int):
             user_id = int(sys.argv[1])
-            user = requests.get(f"{REST_API}users/{user_id}", timeout=5).json()
+            user = requests.get(f"{REST_API}users/{user_id}", timeout=10).json()
             user_tasks = requests.get(
-                f"{REST_API}users/{user_id}/todos", timeout=5).json()
+                f"{REST_API}users/{user_id}/todos", timeout=10).json()
 
             my_dict = {user_id: []}
             for task in user_tasks:
