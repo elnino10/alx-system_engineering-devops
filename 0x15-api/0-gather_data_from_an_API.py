@@ -25,4 +25,4 @@ if __name__ == "__main__":
                 )
             for task in user_tasks:
                 if task["completed"] is True:
-                    print(f"\t{task['title']}")
+                    print(f"\t {task['title']}")
