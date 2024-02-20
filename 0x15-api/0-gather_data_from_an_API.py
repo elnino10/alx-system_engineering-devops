@@ -4,9 +4,9 @@ script that uses the https://jsonplaceholder.typicode.com/ REST API,
 for a given employee ID, returns information about his/her TODO list
 progress
 """
-import sys
-
 import requests
+
+import sys
 
 REST_API = "https://jsonplaceholder.typicode.com/"
 if __name__ == "__main__":
