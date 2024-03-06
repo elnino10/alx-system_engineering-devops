@@ -19,12 +19,16 @@ def recurse(subreddit, hot_list=[], after=None, count=0):
     url = f"https://www.reddit.com/r/{subreddit}/hot.json"
     headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
     res = requests.get(
-        url, headers=headers, params=params, allow_redirects=False, timeout=10
-    ).json()
+        url, headers=headers, params=params, allow_redirects=False, timeout=60
+    )
 
-    res_data = res.get("data")
+    if res.status_code != 200:
+        return None
+
+    res_data = res.json().get("data")
     after = res_data.get("after")
     count += res_data.get("dist")
+
     # add titles from res_data.children to the hot_list
     for child in res_data.get("children"):
         hot_list.append(child.get("data").get("title"))

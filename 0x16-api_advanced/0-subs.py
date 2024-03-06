@@ -8,7 +8,9 @@ def number_of_subscribers(subreddit):
     """returns number of subscribers"""
     url = f"https://www.reddit.com/r/{subreddit}/about.json"
     headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
-    req_res = requests.get(url, headers=headers, timeout=10).json()
+    req_res = requests.get(
+        url, headers=headers, allow_redirects=False, timeout=10
+    ).json()
 
     try:
         return req_res.get("data").get("subscribers")
