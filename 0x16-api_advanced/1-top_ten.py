@@ -10,7 +10,7 @@ def top_ten(subreddit):
     10 hot posts listed for a given subreddit
     """
     url = f"https://www.reddit.com/r/{subreddit}/hot.json?limit=9"
-    user_agent = "Lolly"
+    user_agent = "alx:0x16-api_advanced:v1.0 (by /u/Joe-Egboka)"
     req_res = requests.get(url, user_agent, timeout=10).json()
 
     try:

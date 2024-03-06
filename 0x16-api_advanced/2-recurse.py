@@ -11,5 +11,5 @@ def recurse(subreddit, hot_list=[]):
     for the given subreddit, the function should return None.
     """
     url = f"https://www.reddit.com/r/{subreddit}/hot.json?limit=9"
-    user_agent = "Lolly"
+    user_agent = "alx:0x16-api_advanced:v1.0 (by /u/Joe-Egboka)"
     requests.get(url, user_agent, timeout=10).json()
