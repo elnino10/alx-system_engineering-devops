@@ -7,8 +7,8 @@ import requests
 def number_of_subscribers(subreddit):
     """returns number of subscribers"""
     url = f"https://www.reddit.com/r/{subreddit}/about.json"
-    user_agent = "alx:0x16-api_advanced:v1.0 (by /u/Joe-Egboka)"
-    req_res = requests.get(url, user_agent, timeout=5).json()
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+    req_res = requests.get(url, headers=headers, timeout=10).json()
 
     try:
         return req_res.get("data").get("subscribers")

@@ -10,8 +10,8 @@ def top_ten(subreddit):
     10 hot posts listed for a given subreddit
     """
     url = f"https://www.reddit.com/r/{subreddit}/hot.json?limit=9"
-    user_agent = "alx:0x16-api_advanced:v1.0 (by /u/Joe-Egboka)"
-    req_res = requests.get(url, user_agent, timeout=10).json()
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+    req_res = requests.get(url, headers=headers, timeout=10).json()
 
     try:
         for child in req_res.get("data").get("children"):
