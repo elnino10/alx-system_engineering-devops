@@ -12,7 +12,7 @@ def number_of_subscribers(subreddit):
 
     try:
         return req_res.get("data").get("subscribers")
-    except:
+    except Exception:
         return 0
 
 

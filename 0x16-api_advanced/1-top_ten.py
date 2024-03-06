@@ -16,7 +16,7 @@ def top_ten(subreddit):
     try:
         for child in req_res.get("data").get("children"):
             print(child.get("data").get("title"))
-    except:
+    except Exception:
         print(None)
 
 
